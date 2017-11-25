@@ -8,6 +8,17 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 	
 	private List<OfferItem> unavailableItems = new ArrayList<OfferItem>();
 	
+	//Dodanie settera dla listy dostepnych
+	public void setAvailableItems(List<OfferItem> availabeItems) {
+		this.availabeItems = availabeItems;
+	}
+	//Dodanie settera dla listy niedostepnych:
+	public void setUnavailableItems(List<OfferItem> unavailableItems) {
+		this.unavailableItems = unavailableItems;
+}	
+	//Dodanie konstruktora bezparametrowego:
+	public Offer(){};
+	
 	
 	public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
 		this.availabeItems = availabeItems;
