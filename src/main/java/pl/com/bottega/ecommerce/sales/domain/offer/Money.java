@@ -16,11 +16,11 @@ public class Money implements Comparable<Money> {
 		this.currency = currency;
 	}
 
-	public BigDecimal getPrice() {
+	public BigDecimal getValue() {
 		return value;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setValue(BigDecimal price) {
 		this.value = price;
 	}
 
