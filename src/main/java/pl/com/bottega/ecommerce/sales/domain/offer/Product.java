@@ -6,10 +6,23 @@ import java.util.Date;
 public class Product {
 
 	private String productId;
-	private BigDecimal productPrice;
 	private String productName;
+	private BigDecimal productPrice;
 	private Date productSnapshotDate;
 	private String productType;
+
+	public Product() {
+
+	}
+
+	public Product(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
+			String productType) {
+		this.productId = productId;
+		this.productPrice = productPrice;
+		this.productName = productName;
+		this.productSnapshotDate = productSnapshotDate;
+		this.productType = productType;
+	}
 
 	public String getProductId() {
 		return productId;
@@ -50,7 +63,7 @@ public class Product {
 	public void setProductType(String productType) {
 		this.productType = productType;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,7 +75,7 @@ public class Product {
 		result = prime * result + ((productType == null) ? 0 : productType.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
