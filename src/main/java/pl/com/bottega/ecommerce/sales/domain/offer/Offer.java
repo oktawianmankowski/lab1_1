@@ -18,7 +18,7 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 		return availabeItems;
 	}
 	
-	public List<OfferItem> getUnavailableItems() {
+	public List<OfferItem> getUnavailableItems() { 
 		return unavailableItems;
 	}
 
