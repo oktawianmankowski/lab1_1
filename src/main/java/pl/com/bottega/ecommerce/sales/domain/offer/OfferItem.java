@@ -30,24 +30,21 @@ public class OfferItem {
 	private String currency;
 
 	// discount
-	private String discountCause;
-
-	private BigDecimal discount;
+	private Discount discounts;
 
 	public OfferItem(Product product, int quantity) {
-		this(product, quantity, null, null);
+		this(product, quantity, null);
 	}
 
 	public OfferItem(Product product, int quantity,
-			BigDecimal discount, String discountCause) {
+			Discount discounts) {
 		this.product = product;
 		this.quantity = quantity;
-		this.discount = discount;
-		this.discountCause = discountCause;
+		this.discounts = discounts;
 
 		BigDecimal discountValue = new BigDecimal(0);
-		if (discount != null)
-			discountValue = discountValue.subtract(discount);
+		if (discounts != null)
+			discountValue = discountValue.subtract(discounts.getDiscount());
 
 		this.totalCost = product.getProductPrice()
 				.multiply(new BigDecimal(quantity)).subtract(discountValue);
@@ -57,20 +54,16 @@ public class OfferItem {
 		return product;
 	}
 
+	public Discount getDiscount(){
+		return discounts;
+	}
+
 	public BigDecimal getTotalCost() {
 		return totalCost;
 	}
 
 	public String getTotalCostCurrency() {
 		return currency;
-	}
-
-	public BigDecimal getDiscount() {
-		return discount;
-	}
-
-	public String getDiscountCause() {
-		return discountCause;
 	}
 
 	public int getQuantity() {
@@ -82,7 +75,7 @@ public class OfferItem {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((discount == null) ? 0 : discount.hashCode());
+				+ ((discounts == null) ? 0 : discounts.hashCode());
 		result = prime * result + ((product.getProductName() == null) ? 0 : product.getProductName().hashCode());
 		result = prime * result + ((product.getProductPrice() == null) ? 0 : product.getProductPrice().hashCode());
 		result = prime * result
@@ -103,10 +96,10 @@ public class OfferItem {
 		if (getClass() != obj.getClass())
 			return false;
 		OfferItem other = (OfferItem) obj;
-		if (discount == null) {
-			if (other.discount != null)
+		if (discounts == null) {
+			if (other.discounts != null)
 				return false;
-		} else if (!discount.equals(other.discount))
+		} else if (!discounts.equals(other.discounts))
 			return false;
 		if (product.getProductName() == null) {
 			if (other.product.getProductName() != null)
