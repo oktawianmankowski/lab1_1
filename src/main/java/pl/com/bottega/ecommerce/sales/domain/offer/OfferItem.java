@@ -16,47 +16,38 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class OfferItem {
 
 	private Product product;
-	
+
 	private int quantity;
-	
+
 	private BigDecimal totalCost;
 
-	// discount
-	private String discountCause;
-
-	private BigDecimal discount;
+	private Discount discount;
 
 	public OfferItem(Product product, int quantity) {
-		this(product, quantity, null, null);
+		this(product, quantity, null);
 	}
 
-	public OfferItem(Product product, int quantity, BigDecimal discount, String discountCause) {
+	public OfferItem(Product product, int quantity, Discount discount) {
 		this.quantity = quantity;
 		this.discount = discount;
-		this.discountCause = discountCause;
 
 		BigDecimal discountValue = new BigDecimal(0);
 		if (discount != null)
-			discountValue = discountValue.subtract(discount);
+			discountValue = discountValue.subtract(discount.getDiscount());
 
 		this.totalCost = product.getProductPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
 	}
 
-	public BigDecimal getDiscount() {
-		return discount;
-	}
-
-	public String getDiscountCause() {
-		return discountCause;
-	}
-
 	public int getQuantity() {
 		return quantity;
+	}
+
+	public String getProductId() {
+		return product.getProductId();
 	}
 
 	@Override
@@ -84,7 +75,7 @@ public class OfferItem {
 				return false;
 		} else if (!discount.equals(other.discount))
 			return false;
-		if(!product.equals(other.product)) {
+		if (!product.equals(other.product)) {
 			return false;
 		}
 		if (quantity != other.quantity)
@@ -105,24 +96,9 @@ public class OfferItem {
 	 * @return
 	 */
 	public boolean sameAs(OfferItem other, double delta) {
-		if (productName == null) {
-			if (other.productName != null)
-				return false;
-		} else if (!productName.equals(other.productName))
+		if (!product.equals(other.product)) {
 			return false;
-		if (productPrice == null) {
-			if (other.productPrice != null)
-				return false;
-		} else if (!productPrice.equals(other.productPrice))
-			return false;
-		if (productId == null) {
-			if (other.productId != null)
-				return false;
-		} else if (!productId.equals(other.productId))
-			return false;
-		if (productType != other.productType)
-			return false;
-
+		}
 		if (quantity != other.quantity)
 			return false;
 
