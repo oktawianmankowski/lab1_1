@@ -17,6 +17,16 @@ public class Product {
 
 	private String currency;
 
+	public Product(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
+			String productType, String currency) {
+		this.productId = productId;
+		this.productPrice = productPrice;
+		this.productName = productName;
+		this.productSnapshotDate = productSnapshotDate;
+		this.productType = productType;
+		this.currency = currency;
+	}
+
 	public String getProductId() {
 		return productId;
 	}
@@ -50,7 +60,7 @@ public class Product {
 		result = result + ((productType == null) ? 0 : productType.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -64,22 +74,29 @@ public class Product {
 		}
 		Product other = (Product) obj;
 		if (productName == null) {
-			if (other.productName != null)
+			if (other.productName != null) {
 				return false;
-		} else if (!productName.equals(other.productName))
+			}
+		} else if (!productName.equals(other.productName)) {
 			return false;
+		}
 		if (productPrice == null) {
-			if (other.productPrice != null)
+			if (other.productPrice != null) {
 				return false;
-		} else if (!productPrice.equals(other.productPrice))
+			}
+		} else if (!productPrice.equals(other.productPrice)) {
 			return false;
+		}
 		if (productId == null) {
-			if (other.productId != null)
+			if (other.productId != null) {
 				return false;
-		} else if (!productId.equals(other.productId))
+			}
+		} else if (!productId.equals(other.productId)) {
 			return false;
-		if (productType != other.productType)
+		}
+		if (productType != other.productType) {
 			return false;
+		}
 		return true;
 	}
 
