@@ -7,7 +7,7 @@ public class Product {
 
 	private String productId;
 
-	private BigDecimal productPrice;
+	private Price productPrice;
 
 	private String productName;
 
@@ -15,16 +15,13 @@ public class Product {
 
 	private String productType;
 
-	private String currency;
-
-	public Product(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
-			String productType, String currency) {
+	public Product(String productId, Price productPrice, String productName, Date productSnapshotDate,
+			String productType) {
 		this.productId = productId;
 		this.productPrice = productPrice;
 		this.productName = productName;
 		this.productSnapshotDate = productSnapshotDate;
 		this.productType = productType;
-		this.currency = currency;
 	}
 
 	public String getProductId() {
@@ -32,7 +29,7 @@ public class Product {
 	}
 
 	public BigDecimal getProductPrice() {
-		return productPrice;
+		return productPrice.getPrice();
 	}
 
 	public String getProductName() {
@@ -46,11 +43,7 @@ public class Product {
 	public String getProductType() {
 		return productType;
 	}
-
-	public String getTotalCostCurrency() {
-		return currency;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = 1;

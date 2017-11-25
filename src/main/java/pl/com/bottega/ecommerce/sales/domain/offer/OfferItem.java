@@ -23,23 +23,28 @@ public class OfferItem {
 
 	private int quantity;
 
-	private BigDecimal totalCost;
+	private Price totalCost;
 
 	private Discount discount;
 
-	public OfferItem(Product product, int quantity) {
-		this(product, quantity, null);
+	public OfferItem(Product product, int quantity, Currency currency) {
+		this(product, quantity, currency, null);
 	}
 
-	public OfferItem(Product product, int quantity, Discount discount) {
+	public OfferItem(Product product, int quantity, Currency currency, Discount discount) {
 		this.quantity = quantity;
 		this.discount = discount;
-
 		BigDecimal discountValue = new BigDecimal(0);
 		if (discount != null)
 			discountValue = discountValue.subtract(discount.getDiscount());
 
-		this.totalCost = product.getProductPrice().multiply(new BigDecimal(quantity)).subtract(discountValue);
+		this.totalCost = new Price(
+				product.getProductPrice().multiply(new BigDecimal(quantity)).subtract(discountValue),
+				currency);
+	}
+
+	public Currency getTotalCostCurrency() {
+		return totalCost.getCurrency();
 	}
 
 	public int getQuantity() {
@@ -104,11 +109,11 @@ public class OfferItem {
 
 		BigDecimal max, min;
 		if (totalCost.compareTo(other.totalCost) > 0) {
-			max = totalCost;
-			min = other.totalCost;
+			max = totalCost.getPrice();
+			min = other.totalCost.getPrice();
 		} else {
-			max = other.totalCost;
-			min = totalCost;
+			max = other.totalCost.getPrice();
+			min = totalCost.getPrice();
 		}
 
 		BigDecimal difference = max.subtract(min);
