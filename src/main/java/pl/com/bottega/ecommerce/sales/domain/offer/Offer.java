@@ -19,7 +19,6 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 	//Dodanie konstruktora bezparametrowego:
 	public Offer(){};
 	
-	
 	public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
 		this.availabeItems = availabeItems;
 		this.unavailableItems = unavailableItems;
