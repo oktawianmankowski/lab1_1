@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 public class Cost {
 
     private BigDecimal totalCost;
+    private String currency;
 
-    public Cost(Product product, Discount discount) {
+    public Cost(Product product, Discount discount, String currency) {
         super();
+        this.currency = currency;
         BigDecimal discountValue = new BigDecimal(0);
         if (discount != null) {
             discountValue = discountValue.subtract(discount.getDiscount());
@@ -20,6 +22,10 @@ public class Cost {
 
     public BigDecimal getTotalCost() {
         return totalCost;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 
     @Override
