@@ -17,11 +17,7 @@ public class Money {
         return value;
     }
 
-    public void setValue(BigDecimal value){
-        this.value = value;
-    }
-
-    public String getTotalCostCurrency() {
+    public String getCurrency() {
         return currency;
     }
 

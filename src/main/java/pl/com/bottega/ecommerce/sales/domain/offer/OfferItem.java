@@ -41,10 +41,10 @@ public class OfferItem {
 
 		BigDecimal discountValue = new BigDecimal(0);
 		if (discount != null)
-			discountValue = discountValue.subtract(discount.getDiscount());
+			discountValue = discountValue.subtract(discount.getValue().getValue());
 
-		totalValue.setValue(product.getProductPrice()
-				.multiply(new BigDecimal(quantity)).subtract(discountValue));
+		totalValue = new Money(product.getProductPrice().getValue().multiply(new BigDecimal(quantity)).subtract(discountValue),
+				product.getProductPrice().getCurrency());
 	}
 
 	public Product getProduct(){
@@ -105,7 +105,7 @@ public class OfferItem {
 
 	/**
 	 * 
-	 * @param item
+	 * @param other
 	 * @param delta
 	 *            acceptable percentage difference
 	 * @return
