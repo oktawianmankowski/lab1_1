@@ -1,12 +1,15 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
-import java.math.BigDecimal;
-
 public class Discount {
 	private String discountCause;
-	private BigDecimal discount;
+	private Money value;
 
 	public Discount() {
+	}
+
+	public Discount(String discountCause, Money value) {
+		this.discountCause = discountCause;
+		this.value = value;
 	}
 
 	public String getDiscountCause() {
@@ -17,19 +20,19 @@ public class Discount {
 		this.discountCause = discountCause;
 	}
 
-	public BigDecimal getDiscount() {
-		return discount;
+	public Money getValue() {
+		return value;
 	}
 
-	public void setDiscount(BigDecimal discount) {
-		this.discount = discount;
+	public void setValue(Money discount) {
+		this.value = discount;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((discount == null) ? 0 : discount.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		result = prime * result + ((discountCause == null) ? 0 : discountCause.hashCode());
 		return result;
 	}
@@ -43,10 +46,10 @@ public class Discount {
 		if (getClass() != obj.getClass())
 			return false;
 		Discount other = (Discount) obj;
-		if (discount == null) {
-			if (other.discount != null)
+		if (value == null) {
+			if (other.value != null)
 				return false;
-		} else if (!discount.equals(other.discount))
+		} else if (!value.equals(other.value))
 			return false;
 		if (discountCause == null) {
 			if (other.discountCause != null)

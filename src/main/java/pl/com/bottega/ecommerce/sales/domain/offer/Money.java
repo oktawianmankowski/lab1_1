@@ -3,18 +3,23 @@ package pl.com.bottega.ecommerce.sales.domain.offer;
 import java.math.BigDecimal;
 
 public class Money {
-	private BigDecimal totalCost;
+	private BigDecimal value;
 	private String currency;
 
 	public Money() {
 	}
 
-	public BigDecimal getTotalCost() {
-		return totalCost;
+	public Money(BigDecimal value, String currency) {
+		this.value = value;
+		this.currency = currency;
 	}
 
-	public void setTotalCost(BigDecimal totalCost) {
-		this.totalCost = totalCost;
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	public void setValue(BigDecimal Value) {
+		this.value = Value;
 	}
 
 	public String getCurrency() {
@@ -30,7 +35,7 @@ public class Money {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
-		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
 
@@ -48,10 +53,10 @@ public class Money {
 				return false;
 		} else if (!currency.equals(other.currency))
 			return false;
-		if (totalCost == null) {
-			if (other.totalCost != null)
+		if (value == null) {
+			if (other.value != null)
 				return false;
-		} else if (!totalCost.equals(other.totalCost))
+		} else if (!value.equals(other.value))
 			return false;
 		return true;
 	}
