@@ -9,7 +9,6 @@ public class Offer {
 
     private List<OfferItem> unavailableItems = new ArrayList<OfferItem>();
 
-
     public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
         this.availabeItems = availabeItems;
         this.unavailableItems = unavailableItems;
@@ -27,8 +26,7 @@ public class Offer {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                + ((availabeItems == null) ? 0 : availabeItems.hashCode());
+        result = prime * result + ((availabeItems == null) ? 0 : availabeItems.hashCode());
         return result;
     }
 
@@ -51,7 +49,8 @@ public class Offer {
 
     /**
      * @param seenOffer
-     * @param delta     acceptable difference in percent
+     * @param delta
+     *            acceptable difference in percent
      * @return
      */
     public boolean sameAs(Offer seenOffer, double delta) {
@@ -76,6 +75,5 @@ public class Offer {
         }
         return null;
     }
-
 
 }

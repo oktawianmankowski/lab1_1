@@ -6,7 +6,7 @@ public class Discount {
 
     private Money value;
 
-    public Discount(String discountCause, Money value){
+    public Discount(String discountCause, Money value) {
         this.discountCause = discountCause;
         this.value = value;
     }

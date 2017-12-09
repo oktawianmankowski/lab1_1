@@ -8,7 +8,7 @@ public class Money {
 
     private String currency;
 
-    public Money(BigDecimal value, String currency){
+    public Money(BigDecimal value, String currency) {
         this.value = value;
         this.currency = currency;
     }
