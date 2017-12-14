@@ -20,35 +20,27 @@ import java.util.Date;
 
 public class OfferItem {
 
-    // product
     private Product product;
 
     private int quantity;
 
     private BigDecimal totalCost;
 
-    private String currency;
-
-    // discount
-    private String discountCause;
-
-    private BigDecimal discount;
+    private Discount discount;
 
     public OfferItem(Product product, int quantity) {
-        this(product, quantity, null, null);
+        this(product, quantity, null);
     }
 
-    public OfferItem(Product product, int quantity,
-                     BigDecimal discount, String discountCause) {
+    public OfferItem(Product product, int quantity, Discount discount) {
         this.product = product;
-
         this.quantity = quantity;
         this.discount = discount;
-        this.discountCause = discountCause;
+        this.discount = discount;
 
         BigDecimal discountValue = new BigDecimal(0);
         if (discount != null)
-            discountValue = discountValue.subtract(discount);
+            discountValue = discountValue.subtract(discount.getDiscountValue());
 
         this.totalCost = product.getProductPrice()
                 .multiply(new BigDecimal(quantity)).subtract(discountValue);
@@ -63,16 +55,8 @@ public class OfferItem {
         return totalCost;
     }
 
-    public String getTotalCostCurrency() {
-        return currency;
-    }
-
-    public BigDecimal getDiscount() {
+    public Discount getDiscount() {
         return discount;
-    }
-
-    public String getDiscountCause() {
-        return discountCause;
     }
 
     public int getQuantity() {
@@ -89,8 +73,7 @@ public class OfferItem {
         if (quantity != offerItem.quantity) return false;
         if (product != null ? !product.equals(offerItem.product) : offerItem.product != null) return false;
         if (totalCost != null ? !totalCost.equals(offerItem.totalCost) : offerItem.totalCost != null) return false;
-        if (currency != null ? !currency.equals(offerItem.currency) : offerItem.currency != null) return false;
-        if (discountCause != null ? !discountCause.equals(offerItem.discountCause) : offerItem.discountCause != null)
+        if (discount != null ? !discount.equals(offerItem.discount) : offerItem.discount != null)
             return false;
         return discount != null ? discount.equals(offerItem.discount) : offerItem.discount == null;
     }
@@ -100,8 +83,7 @@ public class OfferItem {
         int result = product != null ? product.hashCode() : 0;
         result = 31 * result + quantity;
         result = 31 * result + (totalCost != null ? totalCost.hashCode() : 0);
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
-        result = 31 * result + (discountCause != null ? discountCause.hashCode() : 0);
+        result = 31 * result + (discount != null ? discount.hashCode() : 0);
         result = 31 * result + (discount != null ? discount.hashCode() : 0);
         return result;
     }
@@ -112,7 +94,7 @@ public class OfferItem {
      * @return
      */
     public boolean sameAs(OfferItem other, double delta) {
-        if (!product.equals(other.getProduct())){
+        if (!product.equals(other.getProduct())) {
             return false;
         }
 
