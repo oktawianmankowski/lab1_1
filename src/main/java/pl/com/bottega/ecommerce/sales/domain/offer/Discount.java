@@ -56,7 +56,5 @@ public class Discount {
 	    return false;
 	return true;
     }
-    
-    
-    
+
 }
