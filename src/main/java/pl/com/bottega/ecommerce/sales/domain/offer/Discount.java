@@ -1,10 +1,14 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
-import java.math.BigDecimal;
-
 public class Discount {
     private String discountCause;
-    private BigDecimal discount;
+    private Money discount;
+
+    public Discount(String discountCause, Money discount) {
+	super();
+	this.discountCause = discountCause;
+	this.discount = discount;
+    }
 
     public Discount() {
 	super();
@@ -14,11 +18,11 @@ public class Discount {
 	this.discountCause = discountCause;
     }
 
-    public BigDecimal getDiscount() {
+    public Money getDiscount() {
 	return discount;
     }
 
-    public void setDiscount(BigDecimal discount) {
+    public void setDiscount(Money discount) {
 	this.discount = discount;
     }
 
@@ -30,30 +34,37 @@ public class Discount {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((discount == null) ? 0 : discount.hashCode());
-	result = prime * result + ((discountCause == null) ? 0 : discountCause.hashCode());
+	result = prime * result + (discount == null ? 0 : discount.hashCode());
+	result = prime * result + (discountCause == null ? 0 : discountCause.hashCode());
 	return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj)
+	if (this == obj) {
 	    return true;
-	if (obj == null)
+	}
+	if (obj == null) {
 	    return false;
-	if (getClass() != obj.getClass())
+	}
+	if (getClass() != obj.getClass()) {
 	    return false;
+	}
 	Discount other = (Discount) obj;
 	if (discount == null) {
-	    if (other.discount != null)
+	    if (other.discount != null) {
 		return false;
-	} else if (!discount.equals(other.discount))
+	    }
+	} else if (!discount.equals(other.discount)) {
 	    return false;
+	}
 	if (discountCause == null) {
-	    if (other.discountCause != null)
+	    if (other.discountCause != null) {
 		return false;
-	} else if (!discountCause.equals(other.discountCause))
+	    }
+	} else if (!discountCause.equals(other.discountCause)) {
 	    return false;
+	}
 	return true;
     }
 
