@@ -12,4 +12,33 @@ public class Cash {
         this.currency = currency;
     }
 
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Cash other = (Cash) obj;
+        if (value == null) {
+            if (other.value != null)
+                return false;
+        } else if (!value.equals(other.value))
+            return false;
+        if (currency == null) {
+            if (other.currency != null)
+                return false;
+        } else if (!currency.equals(other.currency))
+            return false;
+        return true;
+    }
 }
