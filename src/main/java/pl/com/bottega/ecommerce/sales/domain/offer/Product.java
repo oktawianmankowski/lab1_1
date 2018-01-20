@@ -8,12 +8,14 @@ public class Product {
     private String productName;
     private Date productSnapshotDate;
     private String productType;
+    private Cash productPrice;
 
     public Product(String productId, String productName, Date productSnapshotDate, String productType) {
         this.productId = productId;
         this.productName = productName;
         this.productSnapshotDate = productSnapshotDate;
         this.productType = productType;
+        this.productPrice = productPrice;
     }
 
     public String getProductId() {
@@ -22,6 +24,10 @@ public class Product {
 
     public String getProductName() {
         return productName;
+    }
+
+    public Cash getProductPrice() {
+        return productPrice;
     }
 
     public Date getProductSnapshotDate() {
