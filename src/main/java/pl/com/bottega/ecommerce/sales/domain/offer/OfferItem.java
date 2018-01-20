@@ -7,7 +7,6 @@ public class OfferItem {
 
 	// product
 	private Product product;
-	private Cash productPrice;
 	private int quantity;
 	private Cash totalCost;
 
